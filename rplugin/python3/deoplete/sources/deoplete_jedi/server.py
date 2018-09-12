@@ -153,6 +153,7 @@ class Server(object):
 
     This is created when this script is ran directly.
     """
+
     def __init__(self, desc_len=0, short_types=False, show_docstring=False):
         self.desc_len = desc_len
         self.use_short_types = short_types
@@ -305,7 +306,7 @@ class Server(object):
         import jedi
 
         log.debug('Line: %r, Col: %r, Filename: %r', line, col, filename)
-        completions = jedi.Script(source, line, col, filename).completions()
+        completions = jedi.Script(source, line, col, filename, sys_path=sys.path).completions()
         out = []
         tmp_filecache = {}
         for c in completions:
